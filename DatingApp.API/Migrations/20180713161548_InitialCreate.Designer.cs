@@ -8,23 +8,21 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200210110705_InitialCreate")]
+    [Migration("20180713161548_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0");
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846");
 
             modelBuilder.Entity("DatingApp.API.Models.Value", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
