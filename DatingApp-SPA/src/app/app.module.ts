@@ -2,7 +2,8 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angu
 import { NgModule, PipeTransform, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule, CarouselModule } from 'ngx-bootstrap';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -31,6 +32,9 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { ListsResolver } from './_resolvers/lists.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 
 export function tokenGetter() {
@@ -56,10 +60,13 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe { }
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      TimeAgoExtendsPipe
+      TimeAgoExtendsPipe,
+      MemberMessagesComponent
    ],
    imports: [
       BrowserModule,
+      CollapseModule.forRoot(),
+      CarouselModule,
       BrowserAnimationsModule,
       HttpClientModule,
       FormsModule,
@@ -69,8 +76,8 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe { }
       BsDatepickerModule.forRoot(),
       PaginationModule.forRoot(),
       TabsModule.forRoot(),
+      ButtonsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
-      // NgxGalleryModule,
       FileUploadModule,
       JwtModule.forRoot({
          config: {
@@ -85,6 +92,8 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe { }
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      ListsResolver,
+      MessagesResolver,
       PreventUnsavedChanges
    ],
    bootstrap: [

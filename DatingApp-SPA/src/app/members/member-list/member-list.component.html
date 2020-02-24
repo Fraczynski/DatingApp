@@ -29,11 +29,20 @@
     <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">
       Reset Filter
     </button>
+
+    <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" name="orderBy" class="btn btn-primary" [(ngModel)]="userParams.orderBy"
+          (click)="loadUsers()" btnRadio="lastActive">Last Active</button>
+        <button type="button" name="orderBy" class="btn btn-primary" [(ngModel)]="userParams.orderBy"
+          (click)="loadUsers()" btnRadio="created">Newest Members</button>
+      </div>
+    </div>
   </form>
   <br>
 
   <div class="row">
-    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-4">
       <app-member-card [user]="user"></app-member-card>
     </div>
   </div>
@@ -41,8 +50,8 @@
 
 <div class="d-flex justify-content-center">
   <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
-    [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&laquo;"
-    lastText="&raquo;">
+    [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+    firstText="&laquo;" lastText="&raquo;">
 
   </pagination>
 </div>
